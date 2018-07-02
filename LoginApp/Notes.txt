@@ -1,0 +1,2 @@
+-- scaffold sqlite database and generate entity framework layer
+dotnet ef dbcontext scaffold "Datasource=C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DBFiles\loginapp"  -o Model Microsoft.EntityFrameworkCore.Sqlite -c "LoginAppDbContext" -f -d

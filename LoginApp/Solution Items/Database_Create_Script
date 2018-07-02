@@ -1,0 +1,53 @@
+CREATE TABLE AppUser (
+Id TEXT NOT NULL
+CONSTRAINT PK_AppUser PRIMARY KEY,
+UserName TEXT,
+NormalizedUserName TEXT,
+Email TEXT,
+NormalizedEmail TEXT,
+EmailConfirmed INTEGER NOT NULL,
+PasswordHash TEXT,
+SecurityStamp TEXT,
+ConcurrencyStamp TEXT,
+PhoneNumber TEXT,
+PhoneNumberConfirmed INTEGER NOT NULL,
+TwoFactorEnabled INTEGER NOT NULL,
+LockoutEnd TEXT,
+LockoutEnabled INTEGER NOT NULL,
+AccessFailedCount INTEGER NOT NULL
+);
+
+drop table AppUser;
+
+CREATE TABLE AppUser (
+    AppUsr_Id           INTEGER CONSTRAINT PK_AppUser_AppUsrId PRIMARY KEY ASC AUTOINCREMENT
+                                NOT NULL,
+    AppUsr_Username     TEXT,
+    AppUsr_Email        TEXT,
+    AppUsr_PasswordHash TEXT
+);
+
+CREATE TABLE AppRole (
+    AppRl_Id   INTEGER CONSTRAINT PK_AppRole_AppRlId PRIMARY KEY ASC AUTOINCREMENT
+                       NOT NULL,
+    AppRl_Name TEXT
+);
+
+CREATE TABLE AppUserToRole (
+    AppUsrRl_Id        INTEGER CONSTRAINT PK_AppUserToRole_AppUsrRlId PRIMARY KEY ASC AUTOINCREMENT
+                               NOT NULL,
+    AppUsrRl_AppUsrId  INTEGER NOT NULL,
+    AppUsrRl_AppRoleId INTEGER NOT NULL,
+    CONSTRAINT UNQ_AppUserToRole_UsrId_RoleId UNIQUE (
+        AppUsrRl_AppUsrId,
+        AppUsrRl_AppRoleId
+    ),
+    CONSTRAINT FK_AppUserToRole_AppRole_AppRlId FOREIGN KEY (
+        AppUsrRl_AppRoleId
+    )
+    REFERENCES AppRole (AppRl_Id),
+    CONSTRAINT FK_AppUserToRole_AppUser_AppUserId FOREIGN KEY (
+        AppUsrRl_AppUsrId
+    )
+    REFERENCES AppUser (AppUsr_Id) 
+);

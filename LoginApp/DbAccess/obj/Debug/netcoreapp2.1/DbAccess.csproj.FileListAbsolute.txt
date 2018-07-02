@@ -1,9 +1,0 @@
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/bin/Debug/netcoreapp2.1/DbAccess.deps.json
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/bin/Debug/netcoreapp2.1/DbAccess.dll
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/bin/Debug/netcoreapp2.1/DbAccess.pdb
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.csprojAssemblyReference.cache
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.csproj.CoreCompileInputs.cache
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.AssemblyInfoInputs.cache
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.AssemblyInfo.cs
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.dll
-/home/gza/Dev/Github_repos/NetApps/LoginApp/DbAccess/obj/Debug/netcoreapp2.1/DbAccess.pdb
