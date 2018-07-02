@@ -14,12 +14,22 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #line 1 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
-using LoginWebApp;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #line 2 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
+using LoginWebApp;
+
+#line default
+#line hidden
+#line 3 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
 using LoginWebApp.Models;
+
+#line default
+#line hidden
+#line 4 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
+using LoginWebApp.ViewModels;
 
 #line default
 #line hidden
@@ -29,7 +39,7 @@ using Microsoft.AspNetCore.Http.Features;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c18f8c7ec540a446e15b225511cfa1a006e3ec3", @"/Views/Shared/_CookieConsentPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1131930eb5e43e9f43f2fa96b56990df5d3b8f7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3104676da0f65d82783f8b40953dd9078a0735f8", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__CookieConsentPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -97,7 +107,7 @@ using Microsoft.AspNetCore.Http.Features;
                     ");
             EndContext();
             BeginContext(1234, 92, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a05eee7abd824813ba094058961e9464", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eea2ae5ce20e4658b0c22527fc7d6c16", async() => {
                 BeginContext(1312, 10, true);
                 WriteLiteral("Learn More");
                 EndContext();

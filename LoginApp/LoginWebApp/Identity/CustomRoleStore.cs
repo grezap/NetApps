@@ -1,4 +1,5 @@
 ﻿using DataAccess.UOW;
+using Domain.Entities;
 using LoginAppService;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -21,22 +22,59 @@ namespace LoginWebApp.Identity
 
         public Task<IdentityResult> CreateAsync(IdentityRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (role == null)
+                    throw new ArgumentNullException(nameof(role));
+
+                var rol = getRoleEntity(role);
+
+                _service.InsertRole(rol);
+
+                return Task.FromResult(IdentityResult.Success);
+
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));
+
+            }
         }
 
         public Task<IdentityResult> DeleteAsync(IdentityRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (role == null)
+                throw new ArgumentNullException(nameof(role));
+
+            try
+            {
+                var rol = getRoleEntity(role);
+                _service.DeleteRole(rol);
+                return Task.FromResult(IdentityResult.Success);
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));
+            }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public Task<IdentityRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(roleId))
+                throw new ArgumentNullException(nameof(roleId));
+
+            if (!int.TryParse(roleId, out int id))
+                throw new ArgumentOutOfRangeException(nameof(roleId), $"{nameof(roleId)} is not a valid int");
+
+            var rol = _service.GetApplicationRoles().Where(r => r.AppRlId == id).FirstOrDefault();
+
+            return Task.FromResult(getIdentityRole(rol));
+
         }
 
         public Task<IdentityRole> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
@@ -51,12 +89,18 @@ namespace LoginWebApp.Identity
 
         public Task<string> GetRoleIdAsync(IdentityRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (role == null)
+                throw new ArgumentNullException(nameof(role));
+
+            return Task.FromResult(role.Id);
         }
 
         public Task<string> GetRoleNameAsync(IdentityRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (role == null)
+                throw new ArgumentNullException(nameof(role));
+
+            return Task.FromResult(role.Name);
         }
 
         public Task SetNormalizedRoleNameAsync(IdentityRole role, string normalizedName, CancellationToken cancellationToken)
@@ -66,12 +110,57 @@ namespace LoginWebApp.Identity
 
         public Task SetRoleNameAsync(IdentityRole role, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (role == null)
+                throw new ArgumentNullException(nameof(role));
+
+            role.Name = roleName;
+
+            return Task.CompletedTask;
         }
 
         public Task<IdentityResult> UpdateAsync(IdentityRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            if (role == null)
+                throw new ArgumentNullException(nameof(role));
+
+            try
+            {
+                var rol = getRoleEntity(role);
+
+                _service.UpdateRole(rol);
+
+                return Task.FromResult(IdentityResult.Success);
+            }
+            catch (Exception ex)
+            {
+
+                return Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));
+            }
         }
+
+        #region Private Methods
+        private ApplicationRole getRoleEntity(IdentityRole value)
+        {
+            return value == null
+                ? default(ApplicationRole)
+                : new ApplicationRole
+                {
+                    AppRlId = Convert.ToInt64(value.Id),
+                    AppRlName = value.Name
+                };
+        }
+
+        private IdentityRole getIdentityRole(ApplicationRole value)
+        {
+            return value == null
+                ? default(IdentityRole)
+                : new IdentityRole
+                {
+                    Id = Convert.ToString(value.AppRlId),
+                    Name = value.AppRlName
+                };
+        }
+        #endregion
+
     }
 }

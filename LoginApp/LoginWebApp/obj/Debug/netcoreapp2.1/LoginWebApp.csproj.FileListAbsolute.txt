@@ -36,3 +36,7 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Log
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginAppService.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginAppService.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Account\AccessDenied.g.cshtml.cs
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.g.cshtml.cs

@@ -14,17 +14,27 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #line 1 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
-using LoginWebApp;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #line 2 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
+using LoginWebApp;
+
+#line default
+#line hidden
+#line 3 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
 using LoginWebApp.Models;
 
 #line default
 #line hidden
+#line 4 "C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\Views\_ViewImports.cshtml"
+using LoginWebApp.ViewModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e57a9cdbfb174b0e3def22c244c908ddaaf89fa7", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1131930eb5e43e9f43f2fa96b56990df5d3b8f7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3104676da0f65d82783f8b40953dd9078a0735f8", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
