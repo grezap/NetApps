@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LoginWebApp.Identity
 {
-    public class CustomRoleStore : IRoleStore<IdentityRole>
+    public class CustomRoleStore : IRoleStore<ApplicationRole>
     {
 
         private readonly IService _service;
@@ -20,16 +20,16 @@ namespace LoginWebApp.Identity
             _service = service;
         }
 
-        public Task<IdentityResult> CreateAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<IdentityResult> CreateAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
             try
             {
                 if (role == null)
                     throw new ArgumentNullException(nameof(role));
 
-                var rol = getRoleEntity(role);
+                //var rol = getRoleEntity(role);
 
-                _service.InsertRole(rol);
+                _service.InsertRole(role);
 
                 return Task.FromResult(IdentityResult.Success);
 
@@ -41,15 +41,15 @@ namespace LoginWebApp.Identity
             }
         }
 
-        public Task<IdentityResult> DeleteAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<IdentityResult> DeleteAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
             if (role == null)
                 throw new ArgumentNullException(nameof(role));
 
             try
             {
-                var rol = getRoleEntity(role);
-                _service.DeleteRole(rol);
+                //var rol = getRoleEntity(role);
+                _service.DeleteRole(role);
                 return Task.FromResult(IdentityResult.Success);
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace LoginWebApp.Identity
             //throw new NotImplementedException();
         }
 
-        public Task<IdentityRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
+        public Task<ApplicationRole> FindByIdAsync(string roleId, CancellationToken cancellationToken)
         {
             if (string.IsNullOrWhiteSpace(roleId))
                 throw new ArgumentNullException(nameof(roleId));
@@ -71,31 +71,32 @@ namespace LoginWebApp.Identity
             if (!int.TryParse(roleId, out int id))
                 throw new ArgumentOutOfRangeException(nameof(roleId), $"{nameof(roleId)} is not a valid int");
 
-            var rol = _service.GetApplicationRoles().Where(r => r.AppRlId == id).FirstOrDefault();
+            var rol = _service.GetApplicationRoles().Where(r => r.Id == id).FirstOrDefault();
 
-            return Task.FromResult(getIdentityRole(rol));
+            return Task.FromResult(rol);
 
         }
 
-        public Task<IdentityRole> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
+        public Task<ApplicationRole> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var roles = _service.GetApplicationRoles();
+            return Task.FromResult(roles.Where(r=> r.NormalizedName == normalizedRoleName).FirstOrDefault());
         }
 
-        public Task<string> GetNormalizedRoleNameAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<string> GetNormalizedRoleNameAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(role.NormalizedName);
         }
 
-        public Task<string> GetRoleIdAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<string> GetRoleIdAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
             if (role == null)
                 throw new ArgumentNullException(nameof(role));
 
-            return Task.FromResult(role.Id);
+            return Task.FromResult(role.Id.ToString());
         }
 
-        public Task<string> GetRoleNameAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<string> GetRoleNameAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
             if (role == null)
                 throw new ArgumentNullException(nameof(role));
@@ -103,12 +104,13 @@ namespace LoginWebApp.Identity
             return Task.FromResult(role.Name);
         }
 
-        public Task SetNormalizedRoleNameAsync(IdentityRole role, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedRoleNameAsync(ApplicationRole role, string normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            role.NormalizedName = normalizedName;
+            return Task.CompletedTask;
         }
 
-        public Task SetRoleNameAsync(IdentityRole role, string roleName, CancellationToken cancellationToken)
+        public Task SetRoleNameAsync(ApplicationRole role, string roleName, CancellationToken cancellationToken)
         {
             if (role == null)
                 throw new ArgumentNullException(nameof(role));
@@ -118,16 +120,16 @@ namespace LoginWebApp.Identity
             return Task.CompletedTask;
         }
 
-        public Task<IdentityResult> UpdateAsync(IdentityRole role, CancellationToken cancellationToken)
+        public Task<IdentityResult> UpdateAsync(ApplicationRole role, CancellationToken cancellationToken)
         {
             if (role == null)
                 throw new ArgumentNullException(nameof(role));
 
             try
             {
-                var rol = getRoleEntity(role);
+                //var rol = getRoleEntity(role);
 
-                _service.UpdateRole(rol);
+                _service.UpdateRole(role);
 
                 return Task.FromResult(IdentityResult.Success);
             }
@@ -139,14 +141,14 @@ namespace LoginWebApp.Identity
         }
 
         #region Private Methods
-        private ApplicationRole getRoleEntity(IdentityRole value)
+        private ApplicationRole getRoleEntity(ApplicationRole value)
         {
             return value == null
                 ? default(ApplicationRole)
                 : new ApplicationRole
                 {
-                    AppRlId = Convert.ToInt64(value.Id),
-                    AppRlName = value.Name
+                    Id = value.Id,
+                    Name = value.Name
                 };
         }
 
@@ -156,8 +158,8 @@ namespace LoginWebApp.Identity
                 ? default(IdentityRole)
                 : new IdentityRole
                 {
-                    Id = Convert.ToString(value.AppRlId),
-                    Name = value.AppRlName
+                    Id = Convert.ToString(value.Id),
+                    Name = value.Name
                 };
         }
         #endregion

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LoginAppService
 {
@@ -9,7 +10,7 @@ namespace LoginAppService
     {
         #region Application Users
 
-        List<ApplicationUser> GetUsers();
+        Task<List<ApplicationUser>> GetUsers();
         ApplicationUser GetUserById(int id);
         void InsertUser(ApplicationUser applicationUser);
         void InsertUsers(List<ApplicationUser> applicationUsers);
@@ -29,7 +30,14 @@ namespace LoginAppService
         void DeleteRole(ApplicationRole applicationRole);
         void DeleteRoles(List<ApplicationRole> applicationRoles);
         void UpdateRole(ApplicationRole applicationRole);
-        
+
+        #endregion
+
+        #region ApplicationUserToRole
+
+        void InsertUserToRole(ApplicationUserRole applicationUserRole);
+        void RemoveUserFromRole(ApplicationUserRole applicationUserRole);
+
         #endregion
 
     }

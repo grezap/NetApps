@@ -11,6 +11,7 @@ namespace DataAccess.UOW
 
         IGenericRepository<AppUser> AppUserRepository { get; }
         IGenericRepository<AppRole> AppRoleRepository { get; }
+        IGenericRepository<AppUserToRole> AppUserToRoleRepository { get; }
         void Save();
     }
 }

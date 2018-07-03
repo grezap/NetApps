@@ -9,7 +9,6 @@ namespace LoginWebApp.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]

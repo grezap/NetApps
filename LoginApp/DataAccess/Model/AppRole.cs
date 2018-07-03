@@ -14,9 +14,13 @@ namespace DataAccess.Model
 
         [Key]
         [Column("AppRl_Id")]
-        public long AppRlId { get; set; }
+        public long Id { get; set; }
         [Column("AppRl_Name")]
-        public string AppRlName { get; set; }
+        public string Name { get; set; }
+        [Column("AppRl_NormalizedName")]
+        public string NormalizedName { get; set; }
+        [Column("AppRl_ConcurrencyStamp")]
+        public string ConcurrencyStamp { get; set; }
 
         [InverseProperty("AppUsrRlAppRole")]
         public ICollection<AppUserToRole> AppUserToRole { get; set; }

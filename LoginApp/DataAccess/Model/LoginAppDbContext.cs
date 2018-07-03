@@ -32,29 +32,29 @@ namespace DataAccess.Model
         {
             modelBuilder.Entity<AppRole>(entity =>
             {
-                entity.Property(e => e.AppRlId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<AppUser>(entity =>
             {
-                entity.Property(e => e.AppUsrId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<AppUserToRole>(entity =>
             {
-                entity.HasIndex(e => new { e.AppUsrRlAppUsrId, e.AppUsrRlAppRoleId })
+                entity.HasIndex(e => new { e.UserId, e.RoleId })
                     .IsUnique();
 
-                entity.Property(e => e.AppUsrRlId).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.HasOne(d => d.AppUsrRlAppRole)
                     .WithMany(p => p.AppUserToRole)
-                    .HasForeignKey(d => d.AppUsrRlAppRoleId)
+                    .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
 
                 entity.HasOne(d => d.AppUsrRlAppUsr)
                     .WithMany(p => p.AppUserToRole)
-                    .HasForeignKey(d => d.AppUsrRlAppUsrId)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using DataAccess.Model;
 using DataAccess.UOW;
@@ -72,7 +73,7 @@ namespace LoginAppService
             }
         }
 
-        public List<ApplicationUser> GetUsers()
+        public async Task<List<ApplicationUser>> GetUsers()
         {
             try
             {
@@ -216,6 +217,38 @@ namespace LoginAppService
                 throw ex;
             }
         }
+
+
+        #endregion
+
+        #region Application UserToRole
+
+        public void InsertUserToRole(ApplicationUserRole applicationUserRole)
+        {
+            try
+            {
+                _uow.AppUserToRoleRepository.Insert(Mapper.Map<AppUserToRole>(applicationUserRole));
+            }
+            catch ( Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void RemoveUserFromRole(ApplicationUserRole applicationUserRole)
+        {
+            try
+            {
+                _uow.AppUserToRoleRepository.Delete(Mapper.Map<AppUserToRole>(applicationUserRole));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         #endregion
 
     }

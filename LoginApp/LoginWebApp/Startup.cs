@@ -40,7 +40,7 @@ namespace LoginWebApp
 
             services.AddDbContext<LoginAppDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddCustomStores()
                 .AddDefaultTokenProviders();
 
@@ -62,7 +62,10 @@ namespace LoginWebApp
                 //options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                
             });
 
             //services.ConfigureApplicationCookie(options =>

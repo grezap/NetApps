@@ -6,15 +6,22 @@ using DataAccess.Repository;
 
 namespace DataAccess.UOW
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork//, IDisposable
     {
 
-        private static readonly LoginAppDbContext _context = new LoginAppDbContext();
+        private readonly LoginAppDbContext _context;
         private bool disposed = false;
 
         private IGenericRepository<AppUser> _appUserRepository;
 
         private IGenericRepository<AppRole> _appRoleRepository;
+
+        private IGenericRepository<AppUserToRole> _appUserToRoleRepository;
+
+        public UnitOfWork(LoginAppDbContext context)
+        {
+            _context = context;
+        }
 
         public IGenericRepository<AppUser> AppUserRepository
         {
@@ -24,6 +31,11 @@ namespace DataAccess.UOW
         public IGenericRepository<AppRole> AppRoleRepository
         {
             get { return _appRoleRepository ?? (_appRoleRepository = new GenericRepository<AppRole>(_context)); }
+        }
+
+        public IGenericRepository<AppUserToRole> AppUserToRoleRepository
+        {
+            get { return _appUserToRoleRepository ?? (_appUserToRoleRepository = new GenericRepository<AppUserToRole>(_context)); }
         }
 
         public void Dispose()

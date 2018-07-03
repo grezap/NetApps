@@ -19,6 +19,7 @@ namespace LoginAppService.Mapping
         {
             CreateMap<ApplicationUser, AppUser>();
             CreateMap<ApplicationRole, AppRole>();
+            CreateMap<ApplicationUserRole, AppUserToRole>();
         }
     }
 }

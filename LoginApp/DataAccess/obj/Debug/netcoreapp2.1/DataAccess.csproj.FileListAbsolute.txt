@@ -1,11 +1,10 @@
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.deps.json
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.runtimeconfig.json
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.runtimeconfig.dev.json
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.dll
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csproj.CoreCompileInputs.cache
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfo.cs
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.pdb
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.runtimeconfig.json
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\bin\Debug\netcoreapp2.1\DataAccess.runtimeconfig.dev.json
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
