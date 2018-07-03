@@ -37,6 +37,7 @@ namespace LoginAppService
 
         void InsertUserToRole(ApplicationUserRole applicationUserRole);
         void RemoveUserFromRole(ApplicationUserRole applicationUserRole);
+        List<ApplicationUserRole> GetApplicationUserRoles();
 
         #endregion
 

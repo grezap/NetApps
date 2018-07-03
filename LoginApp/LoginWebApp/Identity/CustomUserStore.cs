@@ -22,7 +22,10 @@ namespace LoginWebApp.Identity
 
         public Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            var userRole = new ApplicationUserRole { RoleId = role.Id, UserId = user.Id };
+            _service.InsertUserToRole(userRole);
+            return Task.CompletedTask;
         }
 
         public Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -65,7 +68,7 @@ namespace LoginWebApp.Identity
 
         public Task<ApplicationUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(_service.GetUsers().Result.Where(u=>u.NormalizedEmail == normalizedEmail).FirstOrDefault());
         }
 
         public Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
@@ -94,12 +97,12 @@ namespace LoginWebApp.Identity
 
         public Task<bool> GetEmailConfirmedAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.EmailConfirmed);
         }
 
         public Task<string> GetNormalizedEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.NormalizedEmail);
         }
 
         public Task<string> GetNormalizedUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -117,7 +120,9 @@ namespace LoginWebApp.Identity
 
         public Task<IList<string>> GetRolesAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var userToRoles = _service.GetApplicationUserRoles().Where(ur=>ur.UserId == user.Id);
+            IList<string> roleNames = _service.GetApplicationRoles().Where(r => userToRoles.Select(ur => ur.RoleId).Contains(r.Id)).Select(r => r.Name).ToList();
+            return Task.FromResult(roleNames);
         }
 
         public Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -138,7 +143,10 @@ namespace LoginWebApp.Identity
 
         public Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
+            var userToRoles = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id).ToList();
+            IList<ApplicationUser> users = _service.GetUsers().Result.Where(u => userToRoles.Select(ur => ur.UserId).Contains(u.Id)).ToList();
+            return Task.FromResult(users);
         }
 
         public Task<bool> HasPasswordAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -151,22 +159,28 @@ namespace LoginWebApp.Identity
 
         public Task<bool> IsInRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            return Task.FromResult(_service.GetApplicationUserRoles().Any(ur => ur.RoleId == role.Id && ur.UserId == user.Id));
         }
 
         public Task RemoveFromRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
+            ApplicationUserRole urole = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id && ur.UserId == user.Id).FirstOrDefault();
+            _service.RemoveUserFromRole(urole);
+            return Task.CompletedTask;
         }
 
         public Task SetEmailAsync(ApplicationUser user, string email, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.Email = email;
+            return Task.CompletedTask;
         }
 
         public Task SetEmailConfirmedAsync(ApplicationUser user, bool confirmed, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.EmailConfirmed = confirmed;
+            return Task.CompletedTask;
         }
 
         public Task SetNormalizedEmailAsync(ApplicationUser user, string normalizedEmail, CancellationToken cancellationToken)

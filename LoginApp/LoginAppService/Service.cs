@@ -228,6 +228,7 @@ namespace LoginAppService
             try
             {
                 _uow.AppUserToRoleRepository.Insert(Mapper.Map<AppUserToRole>(applicationUserRole));
+                _uow.Save();
             }
             catch ( Exception ex)
             {
@@ -241,6 +242,20 @@ namespace LoginAppService
             try
             {
                 _uow.AppUserToRoleRepository.Delete(Mapper.Map<AppUserToRole>(applicationUserRole));
+                _uow.Save();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<ApplicationUserRole> GetApplicationUserRoles()
+        {
+            try
+            {
+                return Mapper.Map<List<ApplicationUserRole>>( _uow.AppUserToRoleRepository.Get());
             }
             catch (Exception ex)
             {

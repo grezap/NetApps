@@ -24,6 +24,22 @@ namespace LoginWebApp.Helper
                     roleResult = await roleManager.CreateAsync(new ApplicationRole {Name = roleName, NormalizedName = roleName.ToUpper() });
                 }
             }
+
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var user = await userManager.FindByNameAsync("admin");
+            if (user == null)
+            {
+                string username = "admin";
+                string password = "123456";
+                var success = await userManager.CreateAsync(new ApplicationUser { UserName = username }, password);
+                if (success.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(await userManager.FindByNameAsync(username), "admin");
+                }
+            }
+
+
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
+using LoginAppService;
 using LoginWebApp.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -17,14 +18,15 @@ namespace LoginWebApp.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
-
+        private readonly IService _service;
 
         public AccountController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
+            SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager,IService service)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _service = service;
         }
 
         [HttpGet]
@@ -86,7 +88,8 @@ namespace LoginWebApp.Controllers
                 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRolesAsync(user, new string[] { "Member"});
+                    var newUser = _service.GetUsers().Result.Where(u => u.UserName == user.UserName).FirstOrDefault();
+                    await _userManager.AddToRolesAsync(newUser, new string[] { "Member"});
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
