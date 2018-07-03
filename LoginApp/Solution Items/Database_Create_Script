@@ -1,36 +1,28 @@
-CREATE TABLE AppUser (
-Id TEXT NOT NULL
-CONSTRAINT PK_AppUser PRIMARY KEY,
-UserName TEXT,
-NormalizedUserName TEXT,
-Email TEXT,
-NormalizedEmail TEXT,
-EmailConfirmed INTEGER NOT NULL,
-PasswordHash TEXT,
-SecurityStamp TEXT,
-ConcurrencyStamp TEXT,
-PhoneNumber TEXT,
-PhoneNumberConfirmed INTEGER NOT NULL,
-TwoFactorEnabled INTEGER NOT NULL,
-LockoutEnd TEXT,
-LockoutEnabled INTEGER NOT NULL,
-AccessFailedCount INTEGER NOT NULL
-);
-
-drop table AppUser;
-
-CREATE TABLE AppUser (
-    AppUsr_Id           INTEGER CONSTRAINT PK_AppUser_AppUsrId PRIMARY KEY ASC AUTOINCREMENT
-                                NOT NULL,
-    AppUsr_Username     TEXT,
-    AppUsr_Email        TEXT,
-    AppUsr_PasswordHash TEXT
-);
-
 CREATE TABLE AppRole (
-    AppRl_Id   INTEGER CONSTRAINT PK_AppRole_AppRlId PRIMARY KEY ASC AUTOINCREMENT
-                       NOT NULL,
-    AppRl_Name TEXT
+    AppRl_Id               INTEGER CONSTRAINT PK_AppRole_AppRlId PRIMARY KEY ASC AUTOINCREMENT
+                                   NOT NULL,
+    AppRl_Name             TEXT,
+    AppRl_NormalizedName   TEXT,
+    AppRl_ConcurrencyStamp TEXT
+);
+
+CREATE TABLE AppUser (
+    AppUsr_Id                   INTEGER CONSTRAINT PK_AppUser_AppUsrId PRIMARY KEY ASC AUTOINCREMENT
+                                        NOT NULL,
+    AppUsr_Username             TEXT,
+    AppUsr_NormalizedUserName   TEXT,
+    AppUsr_Email                TEXT,
+    AppUsr_NormalizedEmail      TEXT,
+    AppUsr_EmailConfirmed       INTEGER NOT NULL,
+    AppUsr_PasswordHash         TEXT,
+    AppUsr_SecurityStamp        TEXT,
+    AppUsr_ConcurrencyStamp     TEXT,
+    AppUsr_PhoneNumber          TEXT,
+    AppUsr_PhoneNumberConfirmed INTEGER NOT NULL,
+    AppUsr_TwoFactorEnabled     INTEGER NOT NULL,
+    AppUsr_LockoutEnd           TEXT,
+    AppUsr_LockoutEnabled       INTEGER NOT NULL,
+    AppUsr_AccessFailedCount    INTEGER NOT NULL
 );
 
 CREATE TABLE AppUserToRole (
