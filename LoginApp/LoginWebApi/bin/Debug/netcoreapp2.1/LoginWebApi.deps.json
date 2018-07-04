@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "0d3f7cd7d7d464e6ada0cf2c326d90e145165004"
+    "signature": "e7272e1b785775ec60430dcfad165d51b676a830"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "LoginWebApi/1.0.0": {
         "dependencies": {
+          "AppIdentity": "1.0.0",
           "DataAccess": "1.0.0",
           "Domain": "1.0.0",
           "LoginAppService": "1.0.0",
@@ -35,7 +36,8 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.1",
           "Serilog.AspNetCore": "2.1.1",
           "Serilog.Filters.Expressions": "2.0.0",
-          "Serilog.Settings.Configuration": "2.6.1"
+          "Serilog.Settings.Configuration": "2.6.1",
+          "Serilog.Sinks.File": "4.0.0"
         },
         "runtime": {
           "LoginWebApi.dll": {}
@@ -544,6 +546,27 @@
           "lib/netstandard1.6/Serilog.Settings.Configuration.dll": {}
         }
       },
+      "Serilog.Sinks.File/4.0.0": {
+        "dependencies": {
+          "Serilog": "2.7.1",
+          "System.IO": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.Encoding.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Timer": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Serilog.Sinks.File.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/Serilog.Sinks.File.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_green/1.1.11": {
         "dependencies": {
           "SQLitePCLRaw.core": "1.1.11",
@@ -814,7 +837,26 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
+      "System.Threading.Timer/4.0.1": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "2.1.0",
+          "Microsoft.NETCore.Targets": "2.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
       "System.ValueTuple/4.5.0": {},
+      "AppIdentity/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "LoginAppService": "1.0.0"
+        },
+        "runtime": {
+          "AppIdentity.dll": {}
+        },
+        "compile": {
+          "AppIdentity.dll": {}
+        }
+      },
       "DataAccess/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.1.1",
@@ -4002,6 +4044,13 @@
       "path": "serilog.settings.configuration/2.6.1",
       "hashPath": "serilog.settings.configuration.2.6.1.nupkg.sha512"
     },
+    "Serilog.Sinks.File/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vBj43RkAbeP1dzoPFR2+LfV5GevDRPDq6265JJBv223lMvT9rfdwe/S/I9ow7aZSLYKfw4qPDw6NW8YwjbDbvg==",
+      "path": "serilog.sinks.file/4.0.0",
+      "hashPath": "serilog.sinks.file.4.0.0.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_green/1.1.11": {
       "type": "package",
       "serviceable": true,
@@ -4100,12 +4149,24 @@
       "path": "system.linq.parallel/4.3.0",
       "hashPath": "system.linq.parallel.4.3.0.nupkg.sha512"
     },
+    "System.Threading.Timer/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-saGfUV8uqVW6LeURiqxcGhZ24PzuRNaUBtbhVeuUAvky1naH395A/1nY0P2bWvrw/BreRtIB/EzTDkGBpqCwEw==",
+      "path": "system.threading.timer/4.0.1",
+      "hashPath": "system.threading.timer.4.0.1.nupkg.sha512"
+    },
     "System.ValueTuple/4.5.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-xZtSZNEHGa+tGsKuP4sh257vxJ/yemShz4EusmomkynMzuEDDjVaErBNewpzEF6swUgbcrSQAX3ELsEp1zCOwA==",
       "path": "system.valuetuple/4.5.0",
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    },
+    "AppIdentity/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "DataAccess/1.0.0": {
       "type": "project",

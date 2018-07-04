@@ -1,18 +1,16 @@
-﻿using DataAccess.UOW;
-using Domain.Entities;
+﻿using Domain.Entities;
 using LoginAppService;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LoginWebApp.Identity
+namespace AppIdentity
 {
     public class CustomRoleStore : IRoleStore<ApplicationRole>
     {
-
         private readonly IService _service;
 
         public CustomRoleStore(IService service)
@@ -164,6 +162,5 @@ namespace LoginWebApp.Identity
                 };
         }
         #endregion
-
     }
 }

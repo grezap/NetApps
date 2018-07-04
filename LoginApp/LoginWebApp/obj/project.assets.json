@@ -4920,6 +4920,20 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "AppIdentity/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "LoginAppService": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AppIdentity.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AppIdentity.dll": {}
+        }
+      },
       "DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
@@ -12957,6 +12971,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "AppIdentity/1.0.0": {
+      "type": "project",
+      "path": "../AppIdentity/AppIdentity.csproj",
+      "msbuildProject": "../AppIdentity/AppIdentity.csproj"
+    },
     "DataAccess/1.0.0": {
       "type": "project",
       "path": "../DataAccess/DataAccess.csproj",
@@ -12975,7 +12994,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "DataAccess >= 1.0.0",
+      "AppIdentity >= 1.0.0",
       "Domain >= 1.0.0",
       "LoginAppService >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
@@ -12991,7 +13010,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gzapantis\\.nuget\\packages\\": {},
+    "C:\\Users\\gzapas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13000,14 +13019,14 @@
       "projectUniqueName": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApp\\LoginWebApp.csproj",
       "projectName": "LoginWebApp",
       "projectPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApp\\LoginWebApp.csproj",
-      "packagesPath": "C:\\Users\\gzapantis\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\gzapas\\.nuget\\packages\\",
       "outputPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\gzapantis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gzapas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13020,8 +13039,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\DataAccess\\DataAccess.csproj"
+            "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\AppIdentity\\AppIdentity.csproj": {
+              "projectPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\AppIdentity\\AppIdentity.csproj"
             },
             "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\Domain\\Domain.csproj": {
               "projectPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\Domain\\Domain.csproj"

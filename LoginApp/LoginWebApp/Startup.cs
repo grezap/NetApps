@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AppIdentity;
 using DataAccess.Model;
 using DataAccess.UOW;
 using Domain.Entities;
 using LoginAppService;
-using LoginWebApp.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +41,7 @@ namespace LoginWebApp
             services.AddDbContext<LoginAppDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddCustomStores()
+                .AddCustomIdentityStores()
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IService, Service>();

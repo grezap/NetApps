@@ -8,4 +8,3 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\Data
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.pdb
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\DataAccess\obj\Debug\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache

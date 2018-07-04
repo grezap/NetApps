@@ -1,3 +1,9 @@
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.csprojAssemblyReference.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.csproj.CoreCompileInputs.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.RazorAssemblyInfo.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.RazorAssemblyInfo.cs
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.AssemblyInfoInputs.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginWebApp.deps.json
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginWebApp.runtimeconfig.json
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginWebApp.runtimeconfig.dev.json
@@ -11,12 +17,6 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\Log
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\Domain.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\LoginAppService.pdb
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.csprojAssemblyReference.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.csproj.CoreCompileInputs.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.RazorAssemblyInfo.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.RazorAssemblyInfo.cs
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.AssemblyInfoInputs.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.TagHelpers.input.cache
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.TagHelpers.output.cache
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.RazorCoreGenerate.cache
@@ -40,3 +40,5 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\Log
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.csproj.CopyComplete
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\obj\Debug\netcoreapp2.1\LoginWebApp.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\AppIdentity.dll
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApp\bin\Debug\netcoreapp2.1\AppIdentity.pdb

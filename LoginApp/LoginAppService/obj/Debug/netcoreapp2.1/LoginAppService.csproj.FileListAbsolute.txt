@@ -1,3 +1,7 @@
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.csprojAssemblyReference.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.csproj.CoreCompileInputs.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.AssemblyInfoInputs.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\LoginAppService.deps.json
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\LoginAppService.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\LoginAppService.pdb
@@ -5,10 +9,6 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\Domain.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\bin\Debug\netcoreapp2.1\Domain.pdb
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.csprojAssemblyReference.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.csproj.CoreCompileInputs.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.AssemblyInfoInputs.cache
-C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.csproj.CopyComplete
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginAppService\obj\Debug\netcoreapp2.1\LoginAppService.pdb

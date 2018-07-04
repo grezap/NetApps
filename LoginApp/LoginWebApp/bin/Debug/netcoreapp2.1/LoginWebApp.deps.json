@@ -24,7 +24,7 @@
     ".NETCoreApp,Version=v2.1": {
       "LoginWebApp/1.0.0": {
         "dependencies": {
-          "DataAccess": "1.0.0",
+          "AppIdentity": "1.0.0",
           "Domain": "1.0.0",
           "LoginAppService": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
@@ -844,6 +844,18 @@
         }
       },
       "System.ValueTuple/4.5.0": {},
+      "AppIdentity/1.0.0": {
+        "dependencies": {
+          "Domain": "1.0.0",
+          "LoginAppService": "1.0.0"
+        },
+        "runtime": {
+          "AppIdentity.dll": {}
+        },
+        "compile": {
+          "AppIdentity.dll": {}
+        }
+      },
       "DataAccess/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.1.1",
@@ -4149,6 +4161,11 @@
       "sha512": "sha512-xZtSZNEHGa+tGsKuP4sh257vxJ/yemShz4EusmomkynMzuEDDjVaErBNewpzEF6swUgbcrSQAX3ELsEp1zCOwA==",
       "path": "system.valuetuple/4.5.0",
       "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    },
+    "AppIdentity/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "DataAccess/1.0.0": {
       "type": "project",

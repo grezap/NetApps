@@ -1,18 +1,17 @@
-﻿using DataAccess.UOW;
-using Domain.Entities;
+﻿using Domain.Entities;
 using LoginAppService;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LoginWebApp.Identity
+namespace AppIdentity
 {
     public class CustomUserStore : IUserStore<ApplicationUser>, IUserPasswordStore<ApplicationUser>, IUserEmailStore<ApplicationUser>, IUserRoleStore<ApplicationUser>
     {
-
         private readonly IService _service;
 
         public CustomUserStore(IService service)
@@ -236,7 +235,7 @@ namespace LoginWebApp.Identity
                 _service.UpdateUser(user);
                 return Task.FromResult(IdentityResult.Success);
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
 
                 return Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));

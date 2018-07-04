@@ -259,7 +259,8 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=>r.NormalizedName.ToUpper() == normalizedName.ToUpper()));
+                //var test = _uow.AppRoleRepository.Query().Where(r => r.NormalizedName.ToUpper() == normalizedName.ToUpper());
+                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=>r.NormalizedName.ToUpper() == normalizedName.ToUpper()).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -268,7 +269,7 @@ namespace LoginAppService
             }
         }
 
-        List<ApplicationRole> GetApplicationRolesByUser(ApplicationUser applicationUser)
+        public List<ApplicationRole> GetApplicationRolesByUser(ApplicationUser applicationUser)
         {
             try
             {

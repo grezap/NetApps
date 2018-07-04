@@ -2,14 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Entities;
+using LoginAppService;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace LoginWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UserController : ControllerBase
     {
+
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IService _service;
+        ILogger<UserController> _log;
+
+        public UserController(UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager,
+            IService service,
+            ILogger<UserController> logger
+            )
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _service = service;
+            _log = logger;
+        }
+
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
