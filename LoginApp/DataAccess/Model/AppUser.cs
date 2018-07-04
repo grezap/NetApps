@@ -14,7 +14,7 @@ namespace DataAccess.Model
 
         [Key]
         [Column("AppUsr_Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Column("AppUsr_Username")]
         public string Username { get; set; }
 

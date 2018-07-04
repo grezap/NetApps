@@ -11,3 +11,4 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\Log
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.RazorTargetAssemblyInfo.cache
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.csprojAssemblyReference.cache

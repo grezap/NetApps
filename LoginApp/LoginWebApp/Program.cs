@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace LoginWebApp
 {
@@ -18,6 +19,12 @@ namespace LoginWebApp
         {
             //CreateWebHostBuilder(args).Build().Run();
             var host = BuildWebHost(args);
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(Configuration)
+                //.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+                .CreateLogger();
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -38,9 +45,17 @@ namespace LoginWebApp
         //    WebHost.CreateDefaultBuilder(args)
         //        .UseStartup<Startup>();
 
+        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
+
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
+            .UseSerilog()
+            .UseKestrel()
             .Build();
     }
 }

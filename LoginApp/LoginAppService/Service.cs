@@ -7,17 +7,20 @@ using DataAccess.Model;
 using DataAccess.UOW;
 using Domain.Entities;
 using LoginAppService.Mapping;
+using Microsoft.Extensions.Logging;
 
 namespace LoginAppService
 {
     public class Service : IService
     {
 
-        private IUnitOfWork _uow; 
+        private IUnitOfWork _uow;
+        private ILogger _log;
 
-        public Service(IUnitOfWork uow)
+        public Service(IUnitOfWork uow, ILogger<Service> logger)
         {
             _uow = uow;
+            _log = logger;
             AutoMapperConfiguration.Configure();
         }
 
@@ -25,6 +28,7 @@ namespace LoginAppService
 
         public void DeleteUser(ApplicationUser applicationUser)
         {
+            
             try
             {
                 _uow.AppUserRepository.Delete(Mapper.Map<AppUser>(applicationUser));
@@ -51,6 +55,8 @@ namespace LoginAppService
 
         public ApplicationUser GetUserById(int id)
         {
+            _log.LogInformation("Called GetUserbyId");
+
             try
             {
                 return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.GetById(id));

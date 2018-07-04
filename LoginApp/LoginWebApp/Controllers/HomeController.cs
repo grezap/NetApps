@@ -6,14 +6,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LoginWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using Domain.Entities;
 
 namespace LoginWebApp.Controllers
 {
     
     public class HomeController : Controller
     {
+
+        ILogger<HomeController> _log;
+        private readonly UserManager<ApplicationUser> _userManager; 
+
+
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
+        {
+            _log = logger;
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
+            var user = GetCurrentUser().Result;
+            string name = user == null ? "No User is Logged In":user.UserName ;
+            _log.LogInformation($"User : {name} - Entered Index Action {DateTime.Now}");
             return View();
         }
 
@@ -43,5 +60,11 @@ namespace LoginWebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        private Task<ApplicationUser> GetCurrentUser()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
+
     }
 }

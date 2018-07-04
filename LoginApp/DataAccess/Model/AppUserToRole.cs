@@ -9,11 +9,11 @@ namespace DataAccess.Model
     {
         [Key]
         [Column("AppUsrRl_Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Column("AppUsrRl_AppUsrId")]
-        public long UserId { get; set; }
+        public int UserId { get; set; }
         [Column("AppUsrRl_AppRoleId")]
-        public long RoleId { get; set; }
+        public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]
         [InverseProperty("AppUserToRole")]

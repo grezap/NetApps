@@ -14,7 +14,7 @@ namespace DataAccess.Model
 
         [Key]
         [Column("AppRl_Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Column("AppRl_Name")]
         public string Name { get; set; }
         [Column("AppRl_NormalizedName")]
