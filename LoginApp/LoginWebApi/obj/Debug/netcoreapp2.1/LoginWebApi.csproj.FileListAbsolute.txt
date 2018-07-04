@@ -12,3 +12,10 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\Log
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.pdb
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.csprojAssemblyReference.cache
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\DataAccess.dll
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\Domain.dll
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\LoginAppService.dll
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\DataAccess.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\Domain.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\bin\Debug\netcoreapp2.1\LoginAppService.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\LoginWebApi\obj\Debug\netcoreapp2.1\LoginWebApi.csproj.CopyComplete

@@ -50,6 +50,10 @@ namespace DataAccess.Model
 
         [Column("AppUsr_Email")]
         public string Email { get; set; }
+
+        [Column("AppUsr_NormalizedEmail")]
+        public string NormalizedEmail { get; set; }
+
         [Column("AppUsr_PasswordHash")]
         public string PasswordHash { get; set; }
 

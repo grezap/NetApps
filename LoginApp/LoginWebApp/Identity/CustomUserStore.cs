@@ -22,7 +22,8 @@ namespace LoginWebApp.Identity
 
         public Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            //var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            var role = _service.GetApplicationRoleByNormalizedName(roleName);
             var userRole = new ApplicationUserRole { RoleId = role.Id, UserId = user.Id };
             _service.InsertUserToRole(userRole);
             return Task.CompletedTask;
@@ -68,7 +69,8 @@ namespace LoginWebApp.Identity
 
         public Task<ApplicationUser> FindByEmailAsync(string normalizedEmail, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_service.GetUsers().Result.Where(u=>u.NormalizedEmail == normalizedEmail).FirstOrDefault());
+            //return Task.FromResult(_service.GetUsers().Result.Where(u=>u.NormalizedEmail == normalizedEmail).FirstOrDefault());
+            return Task.FromResult(_service.GetUserByNormalizedEmail(normalizedEmail));
         }
 
         public Task<ApplicationUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
@@ -86,8 +88,9 @@ namespace LoginWebApp.Identity
 
         public Task<ApplicationUser> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            var users = _service.GetUsers().Result;
-            return Task.FromResult(users.Where(u => u.NormalizedUserName.ToLower() == normalizedUserName.ToLower()).FirstOrDefault());
+            //var users = _service.GetUsers().Result;
+            //return Task.FromResult(users.Where(u => u.NormalizedUserName.ToLower() == normalizedUserName.ToLower()).FirstOrDefault());
+            return Task.FromResult(_service.GetUserByNormalizedUserName(normalizedUserName));
         }
 
         public Task<string> GetEmailAsync(ApplicationUser user, CancellationToken cancellationToken)
@@ -120,8 +123,10 @@ namespace LoginWebApp.Identity
 
         public Task<IList<string>> GetRolesAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
-            var userToRoles = _service.GetApplicationUserRoles().Where(ur=>ur.UserId == user.Id);
-            IList<string> roleNames = _service.GetApplicationRoles().Where(r => userToRoles.Select(ur => ur.RoleId).Contains(r.Id)).Select(r => r.Name).ToList();
+            //var userToRoles = _service.GetApplicationUserRoles().Where(ur=>ur.UserId == user.Id);
+            //var userToRoles = _service.GetApplicationUserRolesByUserId(user.Id);
+            //IList<string> roleNames = _service.GetApplicationRoles().Where(r => userToRoles.Select(ur => ur.RoleId).Contains(r.Id)).Select(r => r.Name).ToList();
+            IList<string> roleNames = _service.GetApplicationRolesByUser(user).Select(r => r.Name).ToList();
             return Task.FromResult(roleNames);
         }
 
@@ -143,9 +148,12 @@ namespace LoginWebApp.Identity
 
         public Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
-            var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
-            var userToRoles = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id).ToList();
-            IList<ApplicationUser> users = _service.GetUsers().Result.Where(u => userToRoles.Select(ur => ur.UserId).Contains(u.Id)).ToList();
+            //var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
+            var role = _service.GetApplicationRoleByRoleName(roleName);
+            //var userToRoles = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id).ToList();
+            var userToRoles = _service.GetApplicationUserRolesByRoleId(role.Id);
+            //IList<ApplicationUser> users = _service.GetUsers().Result.Where(u => userToRoles.Select(ur => ur.UserId).Contains(u.Id)).ToList();
+            IList<ApplicationUser> users = _service.GetUsersByRole(role);
             return Task.FromResult(users);
         }
 
@@ -159,14 +167,17 @@ namespace LoginWebApp.Identity
 
         public Task<bool> IsInRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            //var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
+            var role = _service.GetApplicationRoleByNormalizedName(roleName);
             return Task.FromResult(_service.GetApplicationUserRoles().Any(ur => ur.RoleId == role.Id && ur.UserId == user.Id));
         }
 
         public Task RemoveFromRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
-            var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
-            ApplicationUserRole urole = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id && ur.UserId == user.Id).FirstOrDefault();
+            //var role = _service.GetApplicationRoles().Where(r => r.Name == roleName).FirstOrDefault();
+            var role = _service.GetApplicationRoleByRoleName(roleName);
+            //ApplicationUserRole urole = _service.GetApplicationUserRoles().Where(ur => ur.RoleId == role.Id && ur.UserId == user.Id).FirstOrDefault();
+            ApplicationUserRole urole = _service.GetApplicationUserRolesByRoleIdAndUserId(role.Id, user.Id).FirstOrDefault();
             _service.RemoveUserFromRole(urole);
             return Task.CompletedTask;
         }

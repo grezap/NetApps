@@ -71,16 +71,17 @@ namespace LoginWebApp.Identity
             if (!int.TryParse(roleId, out int id))
                 throw new ArgumentOutOfRangeException(nameof(roleId), $"{nameof(roleId)} is not a valid int");
 
-            var rol = _service.GetApplicationRoles().Where(r => r.Id == id).FirstOrDefault();
-
+            //var rol = _service.GetApplicationRoles().Where(r => r.Id == id).FirstOrDefault();
+            var rol = _service.GetApplicationRole(id);
             return Task.FromResult(rol);
 
         }
 
         public Task<ApplicationRole> FindByNameAsync(string normalizedRoleName, CancellationToken cancellationToken)
         {
-            var roles = _service.GetApplicationRoles();
-            return Task.FromResult(roles.Where(r=> r.NormalizedName == normalizedRoleName).FirstOrDefault());
+            //var roles = _service.GetApplicationRoles();
+            //return Task.FromResult(roles.Where(r=> r.NormalizedName == normalizedRoleName).FirstOrDefault());
+            return Task.FromResult(_service.GetApplicationRoleByNormalizedName(normalizedRoleName));
         }
 
         public Task<string> GetNormalizedRoleNameAsync(ApplicationRole role, CancellationToken cancellationToken)

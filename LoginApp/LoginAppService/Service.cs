@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,62 @@ namespace LoginAppService
             }
         }
 
+        public ApplicationUser GetUserByUserName(string userName)
+        {
+            try
+            {
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.Username == userName).FirstOrDefault());                                           
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public ApplicationUser GetUserByNormalizedEmail(string normalizedEmail)
+        {
+            try
+            {
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.NormalizedEmail == normalizedEmail).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public ApplicationUser GetUserByNormalizedUserName(string normalizedUserName)
+        {
+            try
+            {
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.NormalizedUserName.ToUpper() == normalizedUserName.ToUpper()).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public List<ApplicationUser> GetUsersByRole(ApplicationRole role)
+        {
+            try
+            {
+                var userToRoles = _uow.AppUserToRoleRepository.Query().Where(ur => ur.RoleId == role.Id);
+                var users = (from u in _uow.AppUserRepository.Query()
+                             join ur in userToRoles on u.Id equals ur.UserId
+                             select u).ToList();
+                return Mapper.Map<List<ApplicationUser>>(users);
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
         public void InsertUser(ApplicationUser applicationUser)
         {
             try
@@ -173,6 +230,19 @@ namespace LoginAppService
             }
         }
 
+        public ApplicationRole GetApplicationRoleByRoleName(string roleName)
+        {
+            try
+            {
+                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=> r.Name == roleName).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
         public List<ApplicationRole> GetApplicationRoles()
         {
             try
@@ -181,6 +251,36 @@ namespace LoginAppService
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+
+        public ApplicationRole GetApplicationRoleByNormalizedName(string normalizedName)
+        {
+            try
+            {
+                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=>r.NormalizedName.ToUpper() == normalizedName.ToUpper()));
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        List<ApplicationRole> GetApplicationRolesByUser(ApplicationUser applicationUser)
+        {
+            try
+            {
+                var userToRoles = _uow.AppUserToRoleRepository.Query().Where(ur => ur.UserId == applicationUser.Id);
+                var roles = (from r in _uow.AppRoleRepository.Query()
+                             join ur in userToRoles on r.Id equals ur.RoleId
+                             select r).ToList();
+                return Mapper.Map<List<ApplicationRole>>(roles);
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
                 throw ex;
             }
         }
@@ -269,6 +369,46 @@ namespace LoginAppService
                 throw ex;
             }
         }
+
+        public List<ApplicationUserRole> GetApplicationUserRolesByUserId(int userId)
+        {
+            try
+            {
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur=> ur.UserId == userId)).ToList();
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public List<ApplicationUserRole> GetApplicationUserRolesByRoleId(int roleId)
+        {
+            try
+            {
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur => ur.RoleId == roleId)).ToList();
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public List<ApplicationUserRole> GetApplicationUserRolesByRoleIdAndUserId(int roleId, int userId)
+        {
+            try
+            {
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur=>ur.UserId == userId && ur.RoleId == roleId)).ToList();
+            }
+            catch ( Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
 
         #endregion
 

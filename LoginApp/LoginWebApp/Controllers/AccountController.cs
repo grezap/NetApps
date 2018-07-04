@@ -88,7 +88,8 @@ namespace LoginWebApp.Controllers
                 
                 if (result.Succeeded)
                 {
-                    var newUser = _service.GetUsers().Result.Where(u => u.UserName == user.UserName).FirstOrDefault();
+                    //var newUser = _service.GetUsers().Result.Where(u => u.UserName == user.UserName).FirstOrDefault();
+                    var newUser = _service.GetUserByUserName(user.UserName);
                     await _userManager.AddToRolesAsync(newUser, new string[] { "Member"});
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
