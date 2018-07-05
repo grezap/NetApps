@@ -13010,7 +13010,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gzapantis\\.nuget\\packages\\": {},
+    "C:\\Users\\gzapas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13019,14 +13019,14 @@
       "projectUniqueName": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApi\\LoginWebApi.csproj",
       "projectName": "LoginWebApi",
       "projectPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApi\\LoginWebApi.csproj",
-      "packagesPath": "C:\\Users\\gzapantis\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\gzapas\\.nuget\\packages\\",
       "outputPath": "C:\\_Dev_\\_Github_Repos_\\NetApps\\LoginApp\\LoginWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\gzapantis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gzapas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

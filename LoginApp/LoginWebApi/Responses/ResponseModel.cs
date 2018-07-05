@@ -9,28 +9,34 @@ using System.Threading.Tasks;
 
 namespace LoginWebApi.Responses
 {
-    public class ResponseModel : ObjectResult
+    public class ResponseModel<T> //: ObjectResult
     {
         public List<ErrorModel> Errors { get; set; }
         public StatusModel StatusModel { get; set; }
-
-        public ResponseModel(Exception value) : base(value)
+        public T Data { get; set; }
+        
+        public ResponseModel(T data, Exception ex, string message = null)
         {
-            Errors = new List<ErrorModel> { new ErrorModel { Code = "Exception", Description = value.Message } };
-            StatusModel = new StatusModel {Status = Status.Fail };
-            StatusCode = StatusCodes.Status500InternalServerError;
+            Data = data;
+            Errors = new List<ErrorModel> { new ErrorModel { Code = "Exception", Description = ex.Message } };
+            StatusModel = new StatusModel {Status = Status.Fail, Message = message };
+            //value = new {Errors,StatusModel };
+            //StatusCode = StatusCodes.Status500InternalServerError;
         }
 
-        public ResponseModel(object value) : base(value)
+        public ResponseModel(T data, string message = null)
         {
-            StatusModel = new StatusModel { Status = Status.Success };
-            StatusCode = StatusCodes.Status200OK;
+            Data = data;
+            Errors = null;
+            StatusModel = new StatusModel { Status = Status.Success, Message = message };
+            //StatusCode = StatusCodes.Status200OK;
         }
 
-        public ResponseModel(IEnumerable<IdentityError> value) : base(value)
+        public ResponseModel(T data, IEnumerable<IdentityError> value, string message = null)
         {
-            StatusModel = new StatusModel { Status = Status.Fail };
-            StatusCode = StatusCodes.Status500InternalServerError;
+            Data = data;
+            StatusModel = new StatusModel { Status = Status.Fail, Message = message };
+            //StatusCode = StatusCodes.Status500InternalServerError;
             Errors = new List<ErrorModel>();
             foreach (var v in value)
             {
