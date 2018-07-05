@@ -25,7 +25,6 @@
       "LoginWebApi/1.0.0": {
         "dependencies": {
           "AppIdentity": "1.0.0",
-          "DataAccess": "1.0.0",
           "Domain": "1.0.0",
           "LoginAppService": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",

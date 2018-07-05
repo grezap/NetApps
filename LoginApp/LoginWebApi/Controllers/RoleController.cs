@@ -4,13 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
 using LoginAppService;
+using LoginWebApi.Enums;
+using LoginWebApi.Responses;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace LoginWebApi.Controllers
 {
-    public class RoleController : Controller
+    [Route("api/[controller]")]
+    public class RoleController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -29,9 +33,45 @@ namespace LoginWebApi.Controllers
             _log = logger;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Route("getallroles")]
+        public IActionResult GetAllRoles()
         {
-            return View();
+
+            _log.LogInformation("GetAllRoles has been called.");
+            try
+            {
+                var data = _service.GetApplicationRoles();
+                return new ObjectResult(new { data, Status = Status.Success }) { StatusCode = StatusCodes.Status200OK};
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                return new ObjectResult(new { error = ex.Message, Status = Status.Fail}) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
+
+
+        }
+
+        [HttpPost]
+        [Route("createrole")]
+        public IActionResult CreateRole([FromBody] ApplicationRole role)
+        {
+            _log.LogInformation("CreateRole has been called");
+            try
+            {
+                var result = _roleManager.CreateAsync(role).Result;
+                if (result.Errors.Any())
+                {
+                    return new ObjectResult(new { error = result.Errors, Status = Status.Fail }) { StatusCode = StatusCodes.Status500InternalServerError };
+                }
+                return new ObjectResult(new { Status = Status.Success }) { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                return new ObjectResult(new { error = ex.Message, Status = Status.Fail }) { StatusCode = StatusCodes.Status500InternalServerError };
+            }
         }
     }
 }

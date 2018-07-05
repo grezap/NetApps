@@ -6,3 +6,4 @@ C:\_Dev_\_Github_Repos_\NetApps\LoginApp\Domain\obj\Debug\netcoreapp2.1\Domain.A
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\Domain\obj\Debug\netcoreapp2.1\Domain.AssemblyInfo.cs
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\Domain\obj\Debug\netcoreapp2.1\Domain.dll
 C:\_Dev_\_Github_Repos_\NetApps\LoginApp\Domain\obj\Debug\netcoreapp2.1\Domain.pdb
+C:\_Dev_\_Github_Repos_\NetApps\LoginApp\Domain\obj\Debug\netcoreapp2.1\Domain.csprojAssemblyReference.cache
