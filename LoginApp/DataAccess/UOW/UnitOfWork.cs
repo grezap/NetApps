@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using DataAccess.Model;
 using DataAccess.Repository;
 
@@ -61,6 +62,18 @@ namespace DataAccess.UOW
             try
             {
                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            try
+            {
+                return await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {

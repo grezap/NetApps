@@ -19,29 +19,31 @@ namespace AppIdentity
             _service = service;
         }
 
-        public Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
+        public async Task AddToRoleAsync(ApplicationUser user, string roleName, CancellationToken cancellationToken)
         {
             //var role = _service.GetApplicationRoles().Where(r => r.NormalizedName == roleName).FirstOrDefault();
-            var role = _service.GetApplicationRoleByNormalizedName(roleName);
+            //var role = _service.GetApplicationRoleByNormalizedName(roleName);
+            var role = await _service.GetApplicationRoleByNormalizedNameAsync(roleName);
             var userRole = new ApplicationUserRole { RoleId = role.Id, UserId = user.Id };
-            _service.InsertUserToRole(userRole);
-            return Task.CompletedTask;
+            //_service.InsertUserToRole(userRole);
+            await _service.InsertUserToRoleAsync(userRole);
+            //return Task.CompletedTask;
         }
 
-        public Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> CreateAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             try
             {
                 if (user == null)
                     throw new ArgumentNullException(nameof(user));
 
-                _service.InsertUser(user);
+                await _service.InsertUserAsync(user);
 
-                return Task.FromResult(IdentityResult.Success);
+                return await Task.FromResult(IdentityResult.Success);
             }
             catch (Exception ex)
             {
-                return Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));
+                return await Task.FromResult(IdentityResult.Failed(new IdentityError { Code = ex.Message, Description = ex.Message }));
             }
         }
 
@@ -129,20 +131,20 @@ namespace AppIdentity
             return Task.FromResult(roleNames);
         }
 
-        public Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetUserIdAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            return Task.FromResult(user.Id.ToString());
+            return await Task.FromResult(user.Id.ToString());
         }
 
-        public Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
+        public async Task<string> GetUserNameAsync(ApplicationUser user, CancellationToken cancellationToken)
         {
             if (user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            return Task.FromResult(user.UserName);
+            return await Task.FromResult(user.UserName);
         }
 
         public Task<IList<ApplicationUser>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
@@ -232,7 +234,8 @@ namespace AppIdentity
 
             try
             {
-                _service.UpdateUser(user);
+                var u = _service.GetUserById(user.Id);
+                _service.UpdateUser(u);
                 return Task.FromResult(IdentityResult.Success);
             }
             catch (Exception ex)

@@ -32,6 +32,7 @@ namespace DataAccess.Repository
         long Count();
 
         void Insert(T entity);
+        Task<int> InsertAsync(T entity);
         void InsertIfNotExists<TKey>(T entity, Func<T, TKey> predicate);
         void InsertMany(List<T> entities);
         void Update(T entity);

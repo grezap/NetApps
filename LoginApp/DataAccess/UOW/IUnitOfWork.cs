@@ -3,6 +3,7 @@ using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAccess.UOW
 {
@@ -13,5 +14,6 @@ namespace DataAccess.UOW
         IGenericRepository<AppRole> AppRoleRepository { get; }
         IGenericRepository<AppUserToRole> AppUserToRoleRepository { get; }
         void Save();
+        Task<int> SaveAsync();
     }
 }

@@ -17,6 +17,7 @@ namespace LoginAppService
         ApplicationUser GetUserByNormalizedUserName(string normalizedUserName);
         List<ApplicationUser> GetUsersByRole(ApplicationRole role);
         void InsertUser(ApplicationUser applicationUser);
+        Task<int> InsertUserAsync(ApplicationUser applicationUser);
         void InsertUsers(List<ApplicationUser> applicationUsers);
         void DeleteUser(ApplicationUser applicationUser);
         void DeleteUsers(List<ApplicationUser> applicationUsers);
@@ -31,6 +32,7 @@ namespace LoginAppService
         ApplicationRole GetApplicationRole(int id);
         ApplicationRole GetApplicationRoleByRoleName(string roleName);
         ApplicationRole GetApplicationRoleByNormalizedName(string normalizedName);
+        Task<ApplicationRole> GetApplicationRoleByNormalizedNameAsync(string normalizedName);
         List<ApplicationRole> GetApplicationRolesByUser(ApplicationUser applicationUser);
         void InsertRole(ApplicationRole applicationRole);
         void InsertRoles(List<ApplicationRole> applicationRoles);
@@ -43,6 +45,7 @@ namespace LoginAppService
         #region ApplicationUserToRole
 
         void InsertUserToRole(ApplicationUserRole applicationUserRole);
+        Task<int> InsertUserToRoleAsync(ApplicationUserRole applicationUserRole);
         void RemoveUserFromRole(ApplicationUserRole applicationUserRole);
         List<ApplicationUserRole> GetApplicationUserRoles();
         List<ApplicationUserRole> GetApplicationUserRolesByUserId(int userId);

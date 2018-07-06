@@ -81,26 +81,26 @@ namespace DataAccess.Repository
                             int? take = null, 
                             params Expression<Func<T, object>>[] includes)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query = _dbSet.AsNoTracking();
             foreach (Expression<Func<T, object>> include in includes)
             {
-                query = query.Include(include);
+                query = query.AsNoTracking().Include(include);
             }
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.AsNoTracking().Where(filter);
             }
             if (orderBy != null)
             {
-                query = orderBy(query);
+                query = orderBy(query).AsNoTracking();
             }
             if (skip.HasValue)
             {
-                query = query.Skip(skip.Value);
+                query = query.Skip(skip.Value).AsNoTracking();
             }
             if (take.HasValue)
             {
-                query = query.Take(take.Value);
+                query = query.Take(take.Value).AsNoTracking();
             }
             return query.AsNoTracking().ToList();
         }
@@ -125,6 +125,12 @@ namespace DataAccess.Repository
             _dbSet.Add(entity);
         }
 
+        public async Task<int> InsertAsync(T entity)
+        {
+            var res = await _dbSet.AddAsync(entity);
+            return await Task.FromResult(1);
+        }
+
         public void InsertIfNotExists<TKey>(T entity, Func<T, TKey> predicate)
         {
             var exists = _dbSet.Any(c => predicate(entity).Equals(predicate(c)));
@@ -141,31 +147,37 @@ namespace DataAccess.Repository
 
         public IQueryable<T> Query(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, int? skip = null, int? take = null)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query = _dbSet.AsNoTracking();
             if (filter != null)
             {
-                query = query.Where(filter);
+                query = query.Where(filter).AsNoTracking();
             }
             if (orderBy != null)
             {
-                query = orderBy(query);
+                query = orderBy(query).AsNoTracking();
             }
             if (skip.HasValue)
             {
-                query = query.Skip(skip.Value);
+                query = query.Skip(skip.Value).AsNoTracking();
             }
             if (take.HasValue)
             {
-                query = query.Take(take.Value);
+                query = query.Take(take.Value).AsNoTracking();
             }
             return query.AsNoTracking();
         }
 
         public void Update(T entity)
         {
+
             _dbSet.Attach(entity);
+            
             _loginAppDbContext.Entry(entity).State = EntityState.Modified;
-        } 
+            
+            
+        }
+
+
         #endregion
     }
 }

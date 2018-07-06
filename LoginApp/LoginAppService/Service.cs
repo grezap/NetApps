@@ -9,6 +9,7 @@ using DataAccess.UOW;
 using Domain.Entities;
 using LoginAppService.Mapping;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace LoginAppService
 {
@@ -96,7 +97,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.Username == userName).FirstOrDefault());                                           
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().AsNoTracking().Where(q => q.Username == userName).FirstOrDefault());                                           
             }
             catch (Exception ex)
             {
@@ -109,7 +110,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.NormalizedEmail == normalizedEmail).FirstOrDefault());
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().AsNoTracking().Where(q => q.NormalizedEmail == normalizedEmail).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -122,7 +123,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().Where(q => q.NormalizedUserName.ToUpper() == normalizedUserName.ToUpper()).FirstOrDefault());
+                return Mapper.Map<ApplicationUser>(_uow.AppUserRepository.Query().AsNoTracking().Where(q => q.NormalizedUserName.ToUpper() == normalizedUserName.ToUpper()).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -135,8 +136,8 @@ namespace LoginAppService
         {
             try
             {
-                var userToRoles = _uow.AppUserToRoleRepository.Query().Where(ur => ur.RoleId == role.Id);
-                var users = (from u in _uow.AppUserRepository.Query()
+                var userToRoles = _uow.AppUserToRoleRepository.Query().AsNoTracking().Where(ur => ur.RoleId == role.Id);
+                var users = (from u in _uow.AppUserRepository.Query().AsNoTracking()
                              join ur in userToRoles on u.Id equals ur.UserId
                              select u).ToList();
                 return Mapper.Map<List<ApplicationUser>>(users);
@@ -154,6 +155,19 @@ namespace LoginAppService
             {
                 _uow.AppUserRepository.Insert(Mapper.Map<AppUser>(applicationUser));
                 _uow.Save();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<int> InsertUserAsync(ApplicationUser applicationUser)
+        {
+            try
+            {
+                await _uow.AppUserRepository.InsertAsync(Mapper.Map<AppUser>(applicationUser));
+                return await _uow.SaveAsync();
             }
             catch (Exception ex)
             {
@@ -179,7 +193,8 @@ namespace LoginAppService
         {
             try
             {
-                _uow.AppUserRepository.Update(Mapper.Map<AppUser>(applicationUser));
+                var u = _uow.AppUserRepository.GetById(applicationUser.Id);
+                _uow.AppUserRepository.Update(u);
                 _uow.Save();
             }
             catch (Exception ex)
@@ -234,7 +249,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=> r.Name == roleName).FirstOrDefault());
+                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().AsNoTracking().Where(r=> r.Name == roleName).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -260,7 +275,21 @@ namespace LoginAppService
             try
             {
                 //var test = _uow.AppRoleRepository.Query().Where(r => r.NormalizedName.ToUpper() == normalizedName.ToUpper());
-                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().Where(r=>r.NormalizedName.ToUpper() == normalizedName.ToUpper()).FirstOrDefault());
+                return Mapper.Map<ApplicationRole>(_uow.AppRoleRepository.Query().AsNoTracking().Where(r=>r.NormalizedName.ToUpper() == normalizedName.ToUpper()).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _log.LogError(ex.Message);
+                throw ex;
+            }
+        }
+
+        public async Task<ApplicationRole> GetApplicationRoleByNormalizedNameAsync(string normalizedName)
+        {
+            try
+            {
+                //var test = _uow.AppRoleRepository.Query().Where(r => r.NormalizedName.ToUpper() == normalizedName.ToUpper());
+                return await Mapper.Map<Task<ApplicationRole>>(_uow.AppRoleRepository.Query().AsNoTracking().Where(r => r.NormalizedName.ToUpper() == normalizedName.ToUpper()).FirstOrDefaultAsync());
             }
             catch (Exception ex)
             {
@@ -273,8 +302,8 @@ namespace LoginAppService
         {
             try
             {
-                var userToRoles = _uow.AppUserToRoleRepository.Query().Where(ur => ur.UserId == applicationUser.Id);
-                var roles = (from r in _uow.AppRoleRepository.Query()
+                var userToRoles = _uow.AppUserToRoleRepository.Query().AsNoTracking().Where(ur => ur.UserId == applicationUser.Id);
+                var roles = (from r in _uow.AppRoleRepository.Query().AsNoTracking()
                              join ur in userToRoles on r.Id equals ur.RoleId
                              select r).ToList();
                 return Mapper.Map<List<ApplicationRole>>(roles);
@@ -344,6 +373,20 @@ namespace LoginAppService
             }
         }
 
+        public async Task<int> InsertUserToRoleAsync(ApplicationUserRole applicationUserRole)
+        {
+            try
+            {
+                await _uow.AppUserToRoleRepository.InsertAsync(Mapper.Map<AppUserToRole>(applicationUserRole));
+                return await _uow.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void RemoveUserFromRole(ApplicationUserRole applicationUserRole)
         {
             try
@@ -375,7 +418,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur=> ur.UserId == userId)).ToList();
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().AsNoTracking().Where(ur=> ur.UserId == userId)).ToList();
             }
             catch (Exception ex)
             {
@@ -388,7 +431,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur => ur.RoleId == roleId)).ToList();
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().AsNoTracking().Where(ur => ur.RoleId == roleId)).ToList();
             }
             catch (Exception ex)
             {
@@ -401,7 +444,7 @@ namespace LoginAppService
         {
             try
             {
-                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().Where(ur=>ur.UserId == userId && ur.RoleId == roleId)).ToList();
+                return Mapper.Map<List<ApplicationUserRole>>(_uow.AppUserToRoleRepository.Query().AsNoTracking().Where(ur=>ur.UserId == userId && ur.RoleId == roleId)).ToList();
             }
             catch ( Exception ex)
             {
