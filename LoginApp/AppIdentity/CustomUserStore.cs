@@ -235,6 +235,16 @@ namespace AppIdentity
             try
             {
                 var u = _service.GetUserById(user.Id);
+                u.UserName = user.UserName;
+                u.NormalizedUserName = user.NormalizedUserName;
+                u.LockoutEnabled = user.LockoutEnabled;
+                u.LockoutEnd = user.LockoutEnd;
+                u.NormalizedEmail = user.NormalizedEmail;
+                u.PasswordHash = user.PasswordHash;
+                u.PhoneNumber = user.PhoneNumber;
+                u.PhoneNumberConfirmed = user.PhoneNumberConfirmed;
+                u.SecurityStamp = user.SecurityStamp;
+                u.TwoFactorEnabled = user.TwoFactorEnabled;
                 _service.UpdateUser(u);
                 return Task.FromResult(IdentityResult.Success);
             }
